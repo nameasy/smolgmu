@@ -1,0 +1,275 @@
+<!doctype html>
+<!-- Design by Stepan Lyubavtsev. http://mywonderful.website/ -->
+<html lang="ru">
+	<head>
+		<meta charset="utf-8" />
+		<meta content="width=device-width, initial-scale=1" name="viewport" />
+		<title>Научная библиотека СГМУ</title>
+		<link href="/smolgmu/library/index.ea8edc98.css" rel="stylesheet" />
+		<script src="https://unpkg.com/vue@3.3.4/dist/vue.global.prod.js"></script>
+	</head>
+
+	<body>
+		<div class="page">
+			<header class="header">
+				<div class="header__inner">
+					<div class="header__logo">
+						<img alt="" class="header__logo-image" src="/smolgmu/library/logo-1.63e17200.svg" />
+						<img alt="" class="header__logo-image" src="/smolgmu/library/logo-2.d5172e26.svg" />
+						<img alt="" class="header__logo-image" src="/smolgmu/library/logo-3.7885aafb.svg" />
+						<img alt="" class="header__logo-image" src="/smolgmu/library/logo-4.f1f03788.svg" />
+					</div>
+				</div>
+			</header>
+			<nav class="menu">
+				<ul class="menu__list">
+					<li class="menu__item">
+						<a class="button menu__link" href="#departments">Отделы</a>
+					</li>
+					<li class="menu__item">
+						<a class="button menu__link" href="#transport">Как добраться</a>
+					</li>
+					<li class="menu__item">
+						<a class="button menu__link" href="#contacts">Контакты</a>
+					</li>
+					<li class="menu__item">
+						<a class="button menu__link" href="http://rel-nb.ru/?p=844">История</a>
+					</li>
+				</ul>
+			</nav>
+			<main class="main">
+				<section class="section">
+					<div class="section__inner">
+						<h1 class="visually-hidden">Научная библиотека СГМУ</h1>
+						<div class="section__content">
+							<p>
+								Научная библиотека предоставляет доступ к различным информационным ресурсам для студентов, преподавателей и сотрудников. Мы предлагаем печатные и электронные книги,
+								журналы, базы данных и другие источники информации. Наша задача — помощь в обучении, исследованиях и профессиональном развитии.
+							</p>
+						</div>
+					</div>
+				</section>
+				<section class="section" id="departments">
+					<div class="section__inner">
+						<h2 class="section__title">Отделы</h2>
+						<ul class="departments">
+							<li v-for="department in departments" class="departments__item">
+								<div class="department">
+									<div class="department__title">{{ department.title }}</div>
+									<div v-if="department.schedule" class="department__schedule">
+										<div class="department__caption">График работы</div>
+										<p v-for="(paragraph, index) in department.schedule ? department.schedule.split('\n') : []" :key="index" class="department__text">{{ paragraph }}</p>
+									</div>
+									<p class="department__hint">{{ department.hint }}</p>
+									<div class="department__actions">
+										<button @click="openModal(department)" class="button department__button" type="button">Подробнее</button>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="section" id="transport">
+					<div class="section__inner">
+						<h2 class="section__title">Как добраться</h2>
+						<div class="transport">
+							<header class="transport__header">
+								<div class="transport__title"></div>
+								<div class="transport__title">Номера маршрутов</div>
+								<div class="transport__title">Остановка</div>
+							</header>
+							<div class="transport__content">
+								<div v-for="transportItem in transport" class="transport__row">
+									<div class="transport__cell">
+										<div class="transport__text">{{ transportItem.type }}</div>
+									</div>
+									<div class="transport__cell">
+										<div class="transport__caption">Номера маршрутов</div>
+										<div class="transport__text">{{ transportItem.routes }}</div>
+									</div>
+									<div class="transport__cell">
+										<div class="transport__caption">Остановка</div>
+										<div class="transport__text">{{ transportItem.stop }}</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section class="section" id="contacts">
+					<div class="section__inner">
+						<h2 class="section__title">Контакты</h2>
+						<ul class="contacts">
+							<li class="contacts__item">
+								<div class="contacts__caption">Адрес</div>
+								<div class="contacts__text">214019, г. Смоленск, ул. Кирова, д. 52.</div>
+							</li>
+							<li class="contacts__item">
+								<ul class="phone-group">
+									<li class="phone-group__item">
+										<div class="phone-group__text">
+											<a class="link" href="tel:84812310925">8 481 231-09-25</a>
+										</div>
+										<div class="phone-group__hint">Администрация</div>
+									</li>
+									<li class="phone-group__item">
+										<div class="phone-group__text">
+											<a class="link" href="tel:84812621555">8 481 262-15-55</a>
+										</div>
+										<div class="phone-group__hint">Отдел электронных информационных ресурсов</div>
+									</li>
+									<li class="phone-group__item">
+										<div class="phone-group__text">
+											<a class="link" href="tel:84812554598">8 481 255-45-98</a>
+										</div>
+										<div class="phone-group__hint">
+											Вахта, а также отделы комплектования и научной обработки литературы, обслуживания и книгохранения (научный абонемент), справочно-библиографической
+											информации
+										</div>
+									</li>
+									<li class="phone-group__item">
+										<div class="phone-group__text">
+											<a class="link" href="tel:84812240002">8 481 224-00-02</a>
+										</div>
+										<div class="phone-group__hint">Отдел обслуживания и книгохранения (учебный абонемент)</div>
+									</li>
+								</ul>
+							</li>
+							<li class="contacts__item">
+								<div class="contacts__caption">Почта</div>
+								<div class="contacts__text">
+									<a class="link" href="mailto:biblsgmu@ya.ru">biblsgmu@ya.ru</a>
+								</div>
+							</li>
+						</ul>
+						<ul class="socials">
+							<li class="socials__item">
+								<a class="button socials__link" href="https://vk.com/club90268069">ВКонтакте</a>
+							</li>
+							<li class="socials__item">
+								<a class="button socials__link" href="https://ok.ru/nauchnayab">Одноклассники</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+			</main>
+			<footer class="footer">
+				<div class="footer__inner">
+					<div class="footer__copyright">
+						<div class="footer__text">© {{ currentYear }} Научная библиотека СГМУ</div>
+					</div>
+					<div class="footer__design">
+						<div class="footer__text">
+							Дизайн —
+							<a class="link" href="http://mywonderful.website/">Степан Любавцев</a>
+						</div>
+					</div>
+				</div>
+			</footer>
+			<div v-if="currentModal" class="modal">
+				<div class="modal__inner">
+					<header class="modal__header">
+						<div class="modal__title">Отдел {{ currentModal.title }}</div>
+						<button @click="closeModal" class="button modal__close" type="button">
+							<svg width="24" height="24" class="button__icon modal__close-icon">
+								<use href="#close"></use>
+							</svg>
+						</button>
+					</header>
+					<div class="modal__content">
+						<div v-if="currentModal.cabinet" class="modal__cabinet">Кабинет № {{ currentModal.cabinet }}</div>
+						<div v-if="currentModal.schedule" class="modal__schedule">
+							<div class="modal__caption">График работы</div>
+							<p v-for="(paragraph, index) in currentModal.schedule ? currentModal.schedule.split('\n') : []" :key="index" class="modal__text">{{ paragraph }}</p>
+						</div>
+						<div v-if="currentModal.head" class="modal__head">
+							<div class="modal__caption">Заведующий сектором</div>
+							<div class="modal__text">{{ currentModal.head }}</div>
+						</div>
+						<div v-if="currentModal.tel" class="modal__tel">
+							<div class="modal__caption">Телефон</div>
+							<div class="modal__text">{{ currentModal.tel }}</div>
+						</div>
+						<ul v-if="currentModal.id === 2" class="includes">
+							<li class="includes__item">
+								<div class="includes__title">Учебный абонемент</div>
+								<div class="includes__address">ул. Крупской, д. 28 (Административный корпус СГМУ)</div>
+								<div class="includes__schedule">
+									<div class="includes__caption">График работы</div>
+									<p class="includes__text">Понедельник — пятница: 9:00 — 17:00</p>
+									<p class="includes__text">Суббота, воскресенье — выходной</p>
+									<p class="includes__text">Последний четверг месяца — санитарный день</p>
+								</div>
+								<div class="includes__head">
+									<div class="includes__caption">Заведующий сектором</div>
+									<div class="includes__text">Доронина Татьяна Николаевна</div>
+								</div>
+								<div class="includes__tel">
+									<div class="includes__caption">Телефон</div>
+									<div class="includes__text">8 481 224-00-02</div>
+								</div>
+							</li>
+							<li class="includes__item">
+								<div class="includes__title">Научный абонемент</div>
+								<div class="includes__cabinet">Кабинет № 2</div>
+								<div class="includes__schedule">
+									<div class="includes__caption">График работы</div>
+									<p class="includes__text">Понедельник — пятница: 9:00 — 18:00</p>
+									<p class="includes__text">Суббота, воскресенье — выходной</p>
+									<p class="includes__text">Последняя среда месяца — санитарный день</p>
+								</div>
+								<div class="includes__head">
+									<div class="includes__caption">Заведующий сектором</div>
+									<div class="includes__text">Шилова Татьяна Викторовна</div>
+								</div>
+								<div class="includes__tel">
+									<div class="includes__caption">Телефон</div>
+									<div class="includes__text">8 481 255-45-98</div>
+								</div>
+							</li>
+							<li class="includes__item">
+								<div class="includes__title">Общий читальный зал</div>
+								<div class="includes__cabinet">Кабинет № 8</div>
+								<div class="includes__schedule">
+									<div class="includes__caption">График работы</div>
+									<p class="includes__text">Понедельник — пятница: 9:00 — 20:00</p>
+									<p class="includes__text">Суббота: 12:00 — 20:00</p>
+									<p class="includes__text">Воскресенье — выходной</p>
+									<p class="includes__text">Последняя пятница месяца — санитарный день</p>
+								</div>
+								<div class="includes__tel">
+									<div class="includes__caption">Телефон</div>
+									<div class="includes__text">8 481 231-09-25</div>
+								</div>
+							</li>
+							<li class="includes__item">
+								<div class="includes__title">Зал периодических изданий</div>
+								<div class="includes__schedule">
+									<div class="includes__caption">График работы</div>
+									<p class="includes__text">Понедельник — пятница: с 9:00 — 17:00</p>
+									<p class="includes__text">Суббота, воскресенье — выходной</p>
+									<p class="includes__text">Последняя пятница месяца — санитарный день</p>
+								</div>
+							</li>
+						</ul>
+						<div v-if="currentModal.description" class="modal__description">
+							<div class="modal__caption">Основные направления деятельности</div>
+							<p v-for="(paragraph, index) in currentModal.description ? currentModal.description.split('\n') : []" :key="index" class="modal__text">{{ paragraph }}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<svg display="none">
+			<defs>
+				<symbol id="close" viewbox="0 0 24 24">
+					<path
+						d="M12 10.5858L5.63604 4.22182L4.22182 5.63604L10.5858 12L4.22182 18.364L5.63604 19.7782L12 13.4142L18.364 19.7782L19.7782 18.364L13.4142 12L19.7782 5.63604L18.364 4.22182L12 10.5858Z"
+					></path>
+				</symbol>
+			</defs>
+		</svg>
+		<script src="/smolgmu/library/index.e73670a6.js" type="module"></script>
+		<script src="/smolgmu/library/index.3dcb7a5e.js" nomodule="" defer></script>
+	</body>
+</html>
